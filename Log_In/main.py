@@ -1,15 +1,10 @@
 import time
 
 from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import login_page
 from selenium import webdriver
-import change_user
-from Log_In.locators import SelectUser, LogIn
-from base_page import BasePage
 
 
 def login():
@@ -134,7 +129,7 @@ def login():
     click_btn_save.click()
 
     browser.get('http://stage-hr.noveogroup.com/candidate/list')
-    
+
     # go_to_candidate_list = browser.find_element_by_xpath('//*[@id="candidate_list_link"]')
     # go_to_candidate_list.click()
 

@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 
 
-def test_login():
+def test_create_candidate():
     username = 'otrofimova'
     password = '602279cb'
 
@@ -39,6 +39,7 @@ def test_login():
         print("Page http://qa-hr.noveogroup.com/forms is loaded")
 
     driver.get('http://stage-hr.noveogroup.com/candidate/create')
+
 
     input_last_name = driver.find_element(*CandidateCreation.CANDIDATE_LAST_NAME)
     input_last_name.click()
@@ -111,12 +112,15 @@ def test_login():
     click_btn_save.click()
     timeout = 2
     try:
-        element_present = EC.url_contains('http://stage-hr.noveogroup.com/vacancy/129/candidate-processings?vacancy_processing=27649')
+        element_present = EC.url_contains(
+            'http://stage-hr.noveogroup.com/vacancy/129/candidate-processings?vacancy_processing=27649')
         WebDriverWait(driver, timeout).until(element_present)
     except TimeoutException:
         print("Timed out waiting for page to load")
     finally:
-        print("Page http://stage-hr.noveogroup.com/vacancy/129/candidate-processings?vacancy_processing=27649 is loaded")
+        print(
+            "Page http://stage-hr.noveogroup.com/vacancy/129/candidate-processings?vacancy_processing=27649 is loaded")
+
 
     go_to_candidate_list = driver.find_element(*CandidateList.CANDIDATE_LIST_TAB)
     go_to_candidate_list.click()
@@ -142,5 +146,5 @@ def test_login():
 
 
 if __name__ == '__main__':
-    test_login()
+    test_create_candidate()
     quit()

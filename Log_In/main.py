@@ -39,7 +39,7 @@ def login():
     except TimeoutException:
         print("Timed out waiting for page to load")
     finally:
-        print("Page loaded")
+        print("Page http://qa-hr.noveogroup.com/forms is loaded")
 
     driver.get('http://stage-hr.noveogroup.com/candidate/create')
 
@@ -137,7 +137,7 @@ def login():
     except TimeoutException:
         print("Timed out waiting for page to load")
     finally:
-        print("Page loaded")
+        print("Page http://stage-hr.noveogroup.com/vacancy/129/candidate-processings?vacancy_processing=27649 is loaded")
 
     go_to_candidate_list = driver.find_element(*CandidateList.CANDIDATE_LIST_TAB)
     go_to_candidate_list.click()
@@ -148,7 +148,7 @@ def login():
     except TimeoutException:
         print("Timed out waiting for page to load")
     finally:
-        print("Page loaded")
+        print("Page http://stage-hr.noveogroup.com/candidate/list is loaded")
 
     find_candidate = driver.find_element(*CandidateList.CANDIDATE_LIST_SEARCH_NAME)
     find_candidate.click()
@@ -156,8 +156,10 @@ def login():
 
     time.sleep(2)
 
-    assert self._is_element_present(*CandidateList.CANDIDATE_LIST_SEARCH_NAME), \
-        'Не удалось найти поле ИНН контрагента'
+    if driver.find_elements_by_xpath("//*[contains(text(), 'Анастасович')]"):
+        print("Element Анастасович exists")
+    else:
+        print('Element Анастасович is not found')
 
 
 if __name__ == '__main__':

@@ -1,7 +1,4 @@
 import time
-import base_page
-import self as self
-
 from locators import LogIn, SelectUser, CandidateCreation, CandidateList
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.keys import Keys
@@ -10,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 
 
-def login():
+def test_login():
     username = 'otrofimova'
     password = '602279cb'
 
@@ -154,14 +151,14 @@ def login():
     find_candidate.click()
     find_candidate.send_keys('Анастасович')
 
-    time.sleep(2)
-
-    if driver.find_elements_by_xpath("//*[contains(text(), 'Анастасович')]"):
+    amount_of_candidates = len(driver.find_elements_by_xpath("//*[contains(text(), 'Анастасович')]"))
+    if amount_of_candidates > 0:
         print("Element Анастасович exists")
+        print("Анастасовичей: " + str(amount_of_candidates))
     else:
         print('Element Анастасович is not found')
 
 
 if __name__ == '__main__':
-    login()
+    test_login()
     quit()

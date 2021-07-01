@@ -1,3 +1,5 @@
+import time
+
 from locators import LogIn, SelectUser, CandidateCreation, CandidateList
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.keys import Keys
@@ -26,12 +28,12 @@ def test_create_candidate_requirement_fields(browser):
     impersonate.click()
     timeout = 2
     try:
-        element_present = EC.url_contains('http://qa-hr.noveogroup.com/forms')
+        element_present = EC.url_contains('http://stage-hr.noveogroup.com/forms')
         WebDriverWait(browser, timeout).until(element_present)
     except TimeoutException:
         print("Timed out waiting for page to load")
     finally:
-        print("Page http://qa-hr.noveogroup.com/forms is loaded")
+        print("Page http://stage-hr.noveogroup.com/forms is loaded")
 
     browser.get('http://stage-hr.noveogroup.com/candidate/create')
 
@@ -79,11 +81,11 @@ def test_create_candidate_requirement_fields(browser):
         print('Element Анастасович is not found')
 
 
-def test_create_candidate(browser):
+def test_create_optional_fields(browser):
     username = 'otrofimova'
     password = '602279cb'
 
-    browser.get('http://stage-hr.noveogroup.com/')
+    browser.get('http://qa-hr.noveogroup.com/')
     user_input = browser.find_element(*LogIn.USER_NAME)
     user_input.send_keys(username)
 
@@ -98,7 +100,8 @@ def test_create_candidate(browser):
 
     impersonate = browser.find_element(*SelectUser.USER_LUNEVA)
     impersonate.click()
-    timeout = 2
+    time.sleep(5)
+    timeout = 10
     try:
         element_present = EC.url_contains('http://qa-hr.noveogroup.com/forms')
         WebDriverWait(browser, timeout).until(element_present)
@@ -107,7 +110,7 @@ def test_create_candidate(browser):
     finally:
         print("Page http://qa-hr.noveogroup.com/forms is loaded")
 
-    browser.get('http://stage-hr.noveogroup.com/candidate/create')
+    browser.get('http://qa-hr.noveogroup.com/candidate/create')
 
     input_last_name = browser.find_element(*CandidateCreation.CANDIDATE_LAST_NAME)
     input_last_name.click()
@@ -176,29 +179,33 @@ def test_create_candidate(browser):
     choose_english_level.click()
     choose_english_level.send_keys(Keys.DOWN, Keys.ENTER)
 
+    input_description_hh = browser.find_element(*CandidateCreation.CANDIDATE_INPUT_DESCRIPTION_HH)
+    input_description_hh.click()
+    input_description_hh.send_keys('Привет')
+
     click_btn_save = browser.find_element(*CandidateCreation.CANDIDATE_CREATE_BTN)
     click_btn_save.click()
     timeout = 2
     try:
         element_present = EC.url_contains(
-            'http://stage-hr.noveogroup.com/vacancy/129/candidate-processings?vacancy_processing=27649')
+            'http://qa-hr.noveogroup.com/vacancy/129/candidate-processings?vacancy_processing=27649')
         WebDriverWait(browser, timeout).until(element_present)
     except TimeoutException:
         print("Timed out waiting for page to load")
     finally:
         print(
-            "Page http://stage-hr.noveogroup.com/vacancy/129/candidate-processings?vacancy_processing=27649 is loaded")
+            "Page http://qa-hr.noveogroup.com/vacancy/129/candidate-processings?vacancy_processing=27649 is loaded")
 
     go_to_candidate_list = browser.find_element(*CandidateList.CANDIDATE_LIST_TAB)
     go_to_candidate_list.click()
     timeout = 2
     try:
-        element_present = EC.url_contains('http://stage-hr.noveogroup.com/candidate/list')
+        element_present = EC.url_contains('http://qa-hr.noveogroup.com/candidate/list')
         WebDriverWait(browser, timeout).until(element_present)
     except TimeoutException:
         print("Timed out waiting for page to load")
     finally:
-        print("Page http://stage-hr.noveogroup.com/candidate/list is loaded")
+        print("Page http://qa-hr.noveogroup.com/candidate/list is loaded")
 
     find_candidate = browser.find_element(*CandidateList.CANDIDATE_LIST_SEARCH_NAME)
     find_candidate.click()
@@ -214,5 +221,5 @@ def test_create_candidate(browser):
 
 if __name__ == '__main__':
     test_create_candidate_requirement_fields()
-    test_create_candidate()
+    test_create_optional_fields()
     quit()

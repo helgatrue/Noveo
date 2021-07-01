@@ -31,7 +31,7 @@ class CandidateCreation:
     CANDIDATE_ENGLISH_LEVEL = (
     By.XPATH, '//*[@id="app"]/div/div/section/div/form/div[3]/div[1]/div[2]/div/div/span/select')
 
-    CANDIDATE_INPUT_DESCRIPTION_HH = (By.XPATH, '//*[@id="app"]/div/div/section/div/form/div[4]/div/div[2]/div')
+    CANDIDATE_INPUT_DESCRIPTION_HH = (By.CSS_SELECTOR, '[data-role="description-hh-field"] div.editor__content>div')
     CANDIDATE_INPUT_DESCRIPTION_HABR = (By.XPATH, '//*[@id="app"]/div/div/section/div/form/div[5]/div/div[2]/div')
     CANDIDATE_INPUT_DESCRIPTION_LINKEDIN = (By.XPATH, '//*[@id="app"]/div/div/section/div/form/div[6]/div/div[2]/div')
 
@@ -39,5 +39,5 @@ class CandidateCreation:
 
 
 class CandidateList:
-    CANDIDATE_LIST_TAB = (By.XPATH, '//a[@href="http://stage-hr.noveogroup.com/candidate/list"]')
+    CANDIDATE_LIST_TAB = (By.XPATH, '//a[@href="http://qa-hr.noveogroup.com/candidate/list"]')
     CANDIDATE_LIST_SEARCH_NAME = (By.XPATH, "//input[@placeholder='Искать...']")

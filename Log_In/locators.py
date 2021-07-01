@@ -28,13 +28,16 @@ class CandidateCreation:
     CANDIDATE_GITHUB = (By.XPATH, "//input[@placeholder='Введите адрес страницы в Github']")
     CANDIDATE_WISHING_SALARY = (By.XPATH, "//input[@placeholder='Введите желаемую зарплату']")
     CANDIDATE_EDUCATION = (By.XPATH, "//*[@id='app']/div/div/section/div/form/div[3]/div[2]/div/div[1]")
-    CANDIDATE_ENGLISH_LEVEL = (By.XPATH, '//*[@id="app"]/div/div/section/div/form/div[3]/div[1]/div[2]/div/div/span/select')
+    CANDIDATE_ENGLISH_LEVEL = (
+    By.XPATH, '//*[@id="app"]/div/div/section/div/form/div[3]/div[1]/div[2]/div/div/span/select')
+
+    CANDIDATE_INPUT_DESCRIPTION_HH = (By.XPATH, '//*[@id="app"]/div/div/section/div/form/div[4]/div/div[2]/div')
+    CANDIDATE_INPUT_DESCRIPTION_HABR = (By.XPATH, '//*[@id="app"]/div/div/section/div/form/div[5]/div/div[2]/div')
+    CANDIDATE_INPUT_DESCRIPTION_LINKEDIN = (By.XPATH, '//*[@id="app"]/div/div/section/div/form/div[6]/div/div[2]/div')
+
     CANDIDATE_CREATE_BTN = (By.CSS_SELECTOR, '.is-success > span')
 
 
 class CandidateList:
     CANDIDATE_LIST_TAB = (By.XPATH, '//a[@href="http://stage-hr.noveogroup.com/candidate/list"]')
     CANDIDATE_LIST_SEARCH_NAME = (By.XPATH, "//input[@placeholder='Искать...']")
-
-
-

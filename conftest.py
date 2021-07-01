@@ -17,24 +17,22 @@ def pytest_addoption(parser):
 
 capabilities = {
     "browserName": "chrome",
-    "browserVersion": "89.0",
+    "browserVersion": "91.0",
     "enableVideo": True,
-    # "videoName": "video.mp4",
     "enableVNC": True
-    # "platform": "LINUX"
 }
 
 
 @pytest.fixture(scope='class')
-def browser(chrome_options):
-        chrome_options = Options()
-        # chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--window-size=1920x1080")
-        browser = webdriver.Chrome(options=chrome_options)
-        browser.maximize_window()
-        # browser.execute_script("document.body.style.zoom='zoom 125%'")
-        yield browser
-        browser.quit()
+def browser():
+    chrome_options = Options()
+    # chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--window-size=1920x1080")
+    browser = webdriver.Chrome(options=chrome_options)
+    browser.maximize_window()
+    # browser.execute_script("document.body.style.zoom='zoom 125%'")
+    yield browser
+    browser.quit()
 
 
 @pytest.fixture(scope='session')
@@ -62,28 +60,3 @@ def pytest_runtest_makereport(item, call):
             )
         except Exception as e:
             print('Fail to take screen-shot: {}'.format(e))
-
-
-@pytest.fixture(scope="class", autouse=True)
-def add_video_in_allure_report(request, browser):
-    def end():
-        video_url = 'http://127.0.0.1:4444/video/'
-        html = f"""
-        <html><body><video width = '100%'
-                           height = '100%'
-                           controls
-                           autoplay>
-                           <source src = '{video_url}{browser.session_id}.mp4'
-                                   type='video/mp4'>
-        </video></body></html>
-        """
-        allure.attach(body=html, name="VIDEO", attachment_type=allure.attachment_type.HTML)
-
-    request.addfinalizer(end)
-
-
-def pytest_generate_tests(metafunc):
-    if metafunc.config.option.repeat is not None:
-        count = int(metafunc.config.option.repeat)
-        metafunc.fixturenames.append('tmp_ct')
-        metafunc.parametrize('tmp_ct', range(count))

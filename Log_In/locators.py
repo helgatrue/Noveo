@@ -32,8 +32,8 @@ class CandidateCreation:
     By.XPATH, '//*[@id="app"]/div/div/section/div/form/div[3]/div[1]/div[2]/div/div/span/select')
 
     CANDIDATE_INPUT_DESCRIPTION_HH = (By.CSS_SELECTOR, '[data-role="description-hh-field"] div.editor__content>div')
-    CANDIDATE_INPUT_DESCRIPTION_HABR = (By.XPATH, '//*[@id="app"]/div/div/section/div/form/div[5]/div/div[2]/div')
-    CANDIDATE_INPUT_DESCRIPTION_LINKEDIN = (By.XPATH, '//*[@id="app"]/div/div/section/div/form/div[6]/div/div[2]/div')
+    CANDIDATE_INPUT_DESCRIPTION_HABR = (By.CSS_SELECTOR, '[data-role="description-habr-field"] div.editor__content>div')
+    CANDIDATE_INPUT_DESCRIPTION_LINKEDIN = (By.CSS_SELECTOR, '[data-role="description-linkedin-field"] div.editor__content>div')
 
     CANDIDATE_CREATE_BTN = (By.CSS_SELECTOR, '.is-success > span')
 

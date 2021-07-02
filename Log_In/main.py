@@ -100,7 +100,7 @@ def test_create_optional_fields(browser):
 
     impersonate = browser.find_element(*SelectUser.USER_LUNEVA)
     impersonate.click()
-    time.sleep(5)
+    time.sleep(4)
     timeout = 10
     try:
         element_present = EC.url_contains('http://qa-hr.noveogroup.com/forms')
@@ -182,6 +182,14 @@ def test_create_optional_fields(browser):
     input_description_hh = browser.find_element(*CandidateCreation.CANDIDATE_INPUT_DESCRIPTION_HH)
     input_description_hh.click()
     input_description_hh.send_keys('Привет')
+
+    input_description_habr = browser.find_element(*CandidateCreation.CANDIDATE_INPUT_DESCRIPTION_HABR)
+    input_description_habr.click()
+    input_description_habr.send_keys('Привет')
+
+    input_description_linkedin = browser.find_element(*CandidateCreation.CANDIDATE_INPUT_DESCRIPTION_LINKEDIN)
+    input_description_linkedin.click()
+    input_description_linkedin.send_keys('Привет')
 
     click_btn_save = browser.find_element(*CandidateCreation.CANDIDATE_CREATE_BTN)
     click_btn_save.click()
